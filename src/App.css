@@ -21,8 +21,8 @@ body {
 .box {
 	text-align: center;
 	background-color: snow;
-	height: 52vh;
-	width: 350px;
+	height: 60vh;
+	width: 420px;
 	border-radius: 20px;
 	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 	padding-bottom: 50px;
@@ -139,6 +139,23 @@ ul {
 
 .ListContainer:hover {
 	overflow: auto;
+}
+
+.tabs_nav .MuiAppBar-colorPrimary {
+	background: snow;
+	box-shadow: none;
+	color: #000;
+}
+.tabs_nav .PrivateTabIndicator-colo {
+	background-color: #ff4242;
+}
+.tabs_nav .MuiTab-root {
+	width: auto;
+}
+@media (min-width: 600px) {
+	.tabs_nav .MuiTab-root {
+		width: auto;
+	}
 }
 /* ================= TODO LIST BODY STYLING START ==================== */
 

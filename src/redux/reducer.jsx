@@ -1,43 +1,42 @@
-import {
-  ADD_TODO,
-  DELETE_TODO,
-  COMPLETE_TODO,
-  INCOMPLETE_TODO,
-} from "./types.jsx";
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./types.jsx";
 
 const initialState = {
-  allList: [],
-  completeList: [],
-  incompleteList: [],
+	allList: [],
 };
 
 export const Reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_TODO:
-      return {
-        ...state,
-        allList: [...state.allList, action.payload],
-      };
-    case DELETE_TODO:
-      return {
-        ...state,
-        allList: state.allList.filter((arrayElement, index) => {
-          return index !== action.payload;
-        }),
-      };
-    case COMPLETE_TODO:
-      return {
-        ...state,
-        incompleteList: (state.incompleteList[action.payload.id] = ""),
-        completeList: action.payload,
-      };
-    case INCOMPLETE_TODO:
-      return {
-        ...state,
-        completeList: (state.completeList[action.payload.id] = ""),
-        incompleteList: [...state.incompleteList, action.payload],
-      };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case ADD_TODO:
+			return {
+				...state,
+				allList: [...state.allList, action.payload],
+			};
+		case UPDATE_TODO:
+			// const addData = state.allList.filter((arrayElement, index) => {
+			// 		return arrayElement.id !== action.payload.id;
+			// })
+			const addData2 = state.allList.filter((arrayElement, index) => {
+					return arrayElement.id === action.payload.id;
+			})
+			const gettingIndex = state.allList
+				.map((prev) => prev.id)
+				.indexOf(addData2[0].id);
+			console.log();
+			// console.log(action.payload);
+			return {
+				...state,
+				allList: state.allList.map((content, i) =>
+					i === gettingIndex ? content = action.payload  : content
+				),
+			};
+		case DELETE_TODO:
+			return {
+				...state,
+				allList: state.allList.filter((arrayElement, index) => {
+					return arrayElement.id !== action.payload;
+				}),
+			};
+		default:
+			return state;
+	}
 };

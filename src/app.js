@@ -9,11 +9,20 @@ import AddIcon from "@material-ui/icons/Add";
 
 // IMPORTING REDUX
 import { connect } from "react-redux";
-import { add, deleteTodo } from "./redux/actions";
+import { add, deleteTodo, completeTodo, incompleteTodo } from "./redux/actions";
 
-function App({ add, allList, deleteTodo }) {
+function App({
+  add,
+  allList,
+  deleteTodo,
+  completeTodo,
+  incompleteTodo,
+  completeList,
+  incompleteList,
+}) {
   let [item, setItem] = useState("");
-
+  console.log(completeList, "completeList");
+  console.log(incompleteList, "incompleteList");
   const changeInput = (event) => {
     setItem(event.target.value);
   };
@@ -26,6 +35,14 @@ function App({ add, allList, deleteTodo }) {
 
   const deleteItem = (id) => {
     deleteTodo(id);
+  };
+
+  const checkedCompleted = (e, val, id) => {
+    if (e.target.checked === true) {
+      completeTodo({ val, id });
+    } else {
+      incompleteTodo({ val, id });
+    }
   };
 
   return (
@@ -55,6 +72,7 @@ function App({ add, allList, deleteTodo }) {
                   key={index}
                   id={index}
                   onSelect={deleteItem}
+                  checkedCompleted={checkedCompleted}
                 />
               );
             })}
@@ -68,6 +86,8 @@ function App({ add, allList, deleteTodo }) {
 const mapStatetoProps = (state) => {
   return {
     allList: state.Reducer.allList,
+    completeList: state.Reducer.completeList,
+    incompleteList: state.Reducer.incompleteList,
   };
 };
 const mapDispatchtoProps = (dispatch) => {
@@ -77,6 +97,12 @@ const mapDispatchtoProps = (dispatch) => {
     },
     deleteTodo: function (id) {
       dispatch(deleteTodo(id));
+    },
+    completeTodo: function (id) {
+      dispatch(completeTodo(id));
+    },
+    incompleteTodo: function (id) {
+      dispatch(incompleteTodo(id));
     },
   };
 };

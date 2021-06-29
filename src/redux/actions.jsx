@@ -1,9 +1,17 @@
-import { All_List } from "./types";
+import { ADD_TODO, DELETE_TODO } from "./types";
 
 // ADD NEW TO-DO
 export const add = (data) => {
-	return {
-		type: All_List,
-		payload: data,
-	};
+  return {
+    type: ADD_TODO,
+    payload: data,
+  };
+};
+
+// DELETE TO-DO
+export const deleteTodo = (id) => {
+  return {
+    type: DELETE_TODO,
+    payload: id,
+  };
 };

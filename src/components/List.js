@@ -8,24 +8,21 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 export const List = (props) => {
   return (
-		<ul>
-			<li className="list">
-				<Checkbox
-					checked={props.tar}
-					onChange={(e) => props.checkedCompleted(e, props.list, props.id)}
-					inputProps={{ "aria-label": "primary checkbox" }}
-				/>
-				<button
-					className="pDeletebtn"
-					onClick={() => {
-						props.onSelect(props.id);
-					}}
-				>
-					<DeleteIcon className="deleteBtn" />
-				</button>
-				{props.list}
-			</li>
-		</ul>
-	);
+    <li className="list">
+      <Checkbox
+        checked={props.tar}
+        onChange={(e) => props.checkedCompleted(e, props.list, props.id)}
+        inputProps={{ "aria-label": "primary checkbox" }}
+      />
+      <button
+        className="pDeletebtn"
+        onClick={() => {
+          props.onSelect(props.id);
+        }}
+      >
+        <DeleteIcon className="deleteBtn" />
+      </button>
+      {props.list}
+    </li>
+  );
 };
-; ;;      
